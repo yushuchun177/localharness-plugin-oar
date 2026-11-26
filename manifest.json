@@ -1,0 +1,38 @@
+{
+  "id": "oar",
+  "name": "OAR 智能体",
+  "name_en": "OAR agent",
+  "version": "0.1.0",
+  "description": "把任务交给本机装的外部智能体命令行（codex / claude / ollama / llm…），拿回它的输出。",
+  "description_en": "Delegate a task to an external agent CLI installed on this machine (codex / claude / ollama / llm …) and return its output.",
+  "author": "yushuchun177",
+  "homepage": "https://github.com/yushuchun177/localharness-plugin-oar",
+  "min_app": "0.1.0",
+  "tools": [
+    {
+      "name": "oar_agents",
+      "description": "列出本机检测到的外部智能体命令行。",
+      "params": {}
+    },
+    {
+      "name": "oar_run",
+      "description": "用指定的外部智能体跑一个任务，返回它的标准输出。",
+      "params": {
+        "task": "string，任务内容",
+        "agent": "string，可选，codex / claude / ollama / llm，默认自动选第一个可用的",
+        "timeout": "int，可选，秒，默认 180"
+      },
+      "dangerous": true
+    },
+    {
+      "name": "oar_custom",
+      "description": "用任意命令行跑任务：command 里用 {task} 占位，例如 `mytool.exe --ask \"{task}\"`。",
+      "params": {
+        "command": "string，命令行模板，含 {task}",
+        "task": "string，任务内容",
+        "timeout": "int，可选，秒，默认 180"
+      },
+      "dangerous": true
+    }
+  ]
+}
