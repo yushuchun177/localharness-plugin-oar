@@ -3,6 +3,7 @@
   "name": "OAR 智能体",
   "name_en": "OAR agent",
   "version": "0.1.0",
+  "license": "GPL-3.0",
   "description": "把任务交给本机装的外部智能体命令行（codex / claude / ollama / llm…），拿回它的输出。",
   "description_en": "Delegate a task to an external agent CLI installed on this machine (codex / claude / ollama / llm …) and return its output.",
   "author": "yushuchun177",
