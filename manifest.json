@@ -34,5 +34,14 @@
       },
       "dangerous": true
     }
+  ],
+  "settings": [
+    {
+      "key": "timeout",
+      "label": "默认超时（秒）",
+      "type": "int",
+      "default": 180,
+      "help": ""
+    }
   ]
 }
