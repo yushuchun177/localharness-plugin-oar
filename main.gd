@@ -16,6 +16,14 @@ const AGENTS := [
 ]
 
 
+
+func _pref(key: String, def_value):
+	var ml := Engine.get_main_loop()
+	var prefs = ml.root.get_node_or_null("/root/PluginPrefs") if ml != null else null
+	if prefs == null:
+		return def_value
+	return prefs.get_value("oar", key, def_value)
+
 func run(tool: String, args: Dictionary) -> Dictionary:
 	match tool:
 		"oar_agents":
@@ -62,7 +70,7 @@ func _run(args: Dictionary) -> Dictionary:
 	if task == "":
 		return {"ok": false, "output": "task 不能为空"}
 	var want := str(args.get("agent", "")).strip_edges().to_lower()
-	var timeout: int = clampi(int(args.get("timeout", 180)), 10, 900)
+	var timeout: int = clampi(int(args.get("timeout", int(_pref("timeout", 180)))), 10, 900)
 	var chosen: Dictionary = {}
 	for a in AGENTS:
 		if want != "" and str(a["id"]) != want:
