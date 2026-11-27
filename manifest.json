@@ -8,11 +8,37 @@
   "author": "yushuchun177",
   "homepage": "https://github.com/yushuchun177/localharness-plugin-oar",
   "min_app": "0.1.0",
+  "requires": {
+    "os": "Windows 10+",
+    "deps": [
+      "PowerShell",
+      "外部 CLI"
+    ],
+    "disk": "0",
+    "memory": "约 5 MB",
+    "network": "取决于外部程序"
+  },
+  "settings": [
+    {
+      "key": "timeout",
+      "label": "默认超时（秒）",
+      "type": "int",
+      "default": 180,
+      "help": "",
+      "min": 10,
+      "max": 900,
+      "unit": "秒"
+    }
+  ],
   "tools": [
     {
       "name": "oar_agents",
       "description": "列出本机检测到的外部智能体命令行。",
-      "params": {}
+      "params": {},
+      "level": "read",
+      "needs": [
+        "命令行探测"
+      ]
     },
     {
       "name": "oar_run",
@@ -22,7 +48,11 @@
         "agent": "string，可选，codex / claude / ollama / llm，默认自动选第一个可用的",
         "timeout": "int，可选，秒，默认 180"
       },
-      "dangerous": true
+      "dangerous": true,
+      "level": "danger",
+      "needs": [
+        "启动外部程序"
+      ]
     },
     {
       "name": "oar_custom",
@@ -32,16 +62,12 @@
         "task": "string，任务内容",
         "timeout": "int，可选，秒，默认 180"
       },
-      "dangerous": true
-    }
-  ],
-  "settings": [
-    {
-      "key": "timeout",
-      "label": "默认超时（秒）",
-      "type": "int",
-      "default": 180,
-      "help": ""
+      "dangerous": true,
+      "level": "danger",
+      "needs": [
+        "启动外部程序",
+        "任意命令"
+      ]
     }
   ]
 }
